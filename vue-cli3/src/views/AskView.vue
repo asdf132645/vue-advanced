@@ -1,35 +1,31 @@
 <template>
     <div>
-        <div v-for="item in ask" :key="item.title">
+        <div v-for="item in mapAsk" :key="item.title">
             {{ item.title }}
         </div>
     </div>
 </template>
 <script>
-import { fetchAskList } from '../api/index.js'
+import { mapState, mapGetters } from 'vuex';
 import axios from 'axios';
 
 export default {
-    data(){
-        return {
-            ask: []
-        }
+    computed: {
+        ...mapGetters({
+            mapAsk : "mapAsk"
+        })
+        //연결두가지방법
+        //1.
+        // ask(){
+        //     return this.$store.state.ask;
+        // }
+        //2.
+        // ...mapState({
+        //     mapAsk: (state) => state.ask
+        // })
     },
-    //라이프사이클 훅
-    //속성 함수인경우 펑션 생략가능
     created() {
-        var vm = this;
-        fetchAskList()
-        .then(function(response){
-            vm.ask = response.data;
-        })
-        .catch(function(err){
-            console.log(err);
-        })
-        
-    },
-    beforeMount(){
-
+        this.$store.dispatch('FETCH_ASK');
     }
 }
 </script>
