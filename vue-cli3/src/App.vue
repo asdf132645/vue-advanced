@@ -2,8 +2,11 @@
   <div id="app">
     <!-- 케밥표시법 사용 -->
     <tool-bar></tool-bar>
-    <!-- url 주소에 따라 화면 전환 라우터 뷰 -->
-    <router-view></router-view>
+    <!-- 트랜지션은 페이지이동 효과임 사이트 -> https://vuejs.org/v2/guide/transitions.html#Transitioning-Single-Elements-Components name 은 클래스 -->
+    <transition name="fage">
+      <!-- url 주소에 따라 화면 전환 라우터 뷰  페이지 컴포넌트 views 폴더안에 있는 vue 파일-->
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -21,5 +24,13 @@ export default {
 body{
   padding: 0;
   margin: 0;
+}
+
+/* 라우터 트랜지션 */
+.fage-enter-active, .fage-leave-active {
+  transition: opacity .5s;
+}
+.fage-enter, .fage-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
