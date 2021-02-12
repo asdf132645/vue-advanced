@@ -7,7 +7,16 @@ export default {
     SET_JOBS(state, jobs) {
         state.jobs = jobs;
     },
+    //액션에서 호출 하는 함수들 커밋으로 가능
     SET_ASK(state, ask) {
         state.ask = ask;
+    },
+    //액션에서 호출 하는 함수들 커밋으로 가능
+    SET_USER(state, user) {
+        state.user = user;
+    },
+    //액션에서 호출 하는 함수들 커밋으로 가능
+    SET_ITEM(state, item) {
+        state.item = item;
     }
 }

@@ -33,11 +33,12 @@ export const router = new VueRouter({
             component: JovsView,
         },
         {
-            path: '/user',
+            //동적 라우팅 여기서 백단에서 쿼리를 날릴수도 있는 부분 (다이나믹 라우팅)
+            path: '/user/:id',
             component: UserView,
         },
         {
-            path: '/item',
+            path: '/item/:id',
             component: ItemView,
         }
     ]

@@ -12,11 +12,17 @@ export const store = new Vuex.Store({
     state: {
         news: [],
         jobs: [],
-        ask: []
+        ask: [],
+        user: {},
+        item: []
     },
     getters: {
         mapAsk(state) {
             return state.ask;
+        },
+        fechedItem(state) {
+            //state 에서 item 받아오기
+            return state.item;
         }
     },
     mutations,
