@@ -7,7 +7,8 @@ import { store } from './stroe/index.js'
 
 Vue.config.productionTip = false
 
-//전체 코드 확인 가능한 파일임
+//전체 코드 확인 가능한 파일임 
+//라우터 스토어 폴더 제어 관리 파일 main.js
 
 
 

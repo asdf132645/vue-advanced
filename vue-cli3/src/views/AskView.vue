@@ -1,8 +1,14 @@
 <template>
     <div>
-        <div v-for="item in mapAsk" :key="item.title">
+        <!-- <div v-for="item in mapAsk" :key="item.title">
             {{ item.title }}
-        </div>
+        </div> -->
+        <p v-for="item in mapAsk" :key="item.title">
+            <a :href="item.url"> 
+                {{ item.title }}
+            </a>
+            <small>{{ item.time_ago }} by {{ item.domain }}</small>
+        </p>
     </div>
 </template>
 <script>
