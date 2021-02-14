@@ -37,7 +37,7 @@ export const router = new VueRouter({
         },
         {
             //동적 라우팅 여기서 백단에서 쿼리를 날릴수도 있는 부분 (다이나믹 라우팅)
-            path: '/user/:id',
+            path: '/userview/:id',
             component: UserView,
         },
         {

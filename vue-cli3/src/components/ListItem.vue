@@ -24,7 +24,7 @@
                             <!-- item.user가 있는 경우 -->
                             <router-link 
                             v-if="item.user"
-                            v-bind:to="`/user/${item.user}`"> {{ item.user }} 
+                            v-bind:to="`/userview/${item.user}`"> {{ item.user }} 
                             </router-link>
 
                             <a :href="item.url" v-else>
