@@ -29,6 +29,10 @@ function fetchCommentItem(id) {
     return axios.get(`${config.baseUrl}item/${id}.json`);
 }
 
+function fetchList(pageName){
+    return axios.get(`${config.baseUrl}${pageName}/1.json`)
+}
+
 //내보내기
 export {
     fetchNewsList,
@@ -36,4 +40,5 @@ export {
     fetchJobsList,
     fetchUserInfo,
     fetchCommentItem,
+    fetchList
 }

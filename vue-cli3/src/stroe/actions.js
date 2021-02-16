@@ -1,41 +1,51 @@
 //api 폴더에 들어있는 api 함수들을 사용하는 액션js
-import { fetchNewsList, fetchJobsList, fetchAskList, fetchUserInfo, fetchCommentItem } from '../api/index.js';
+import { 
+    fetchNewsList, 
+    fetchJobsList, 
+    fetchAskList, 
+    fetchUserInfo, 
+    fetchCommentItem, 
+    fetchList 
+} from '../api/index.js';
 
 export default {
     //액션에서 뮤스테이션으로 state값을 넘길수있는 구조임
     //액션은 state 값을 변경을 못함 뮤스테이션으로 값을 넘겨야함  context.commit() 이런식으로 뮤스테이션 호출
     //액션,뮤스테이션 함수는 대문자로 지어주는게 국룰
-    FETCH_NEWS(context) {
-        //api폴더에 index.js 함수 호출
-        fetchNewsList()
-            .then(response => {
-                console.log(response.data);
-                context.commit('SET_NEWS', response.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    },
-    FETCH_JOBS({ commit }) {
-        //api폴더에 index.js 함수 호출
-        fetchJobsList()
-            .then(({ data }) => {
-                commit('SET_JOBS', data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    },
-    FETCH_ASK({ commit }) {
-        //api폴더에 index.js 함수 호출
-        fetchAskList()
-            .then(({ data }) => {
-                commit('SET_ASK', data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    },
+    // FETCH_NEWS(context) {
+    //     //api폴더에 index.js 함수 호출
+    //     fetchNewsList()
+    //         .then(response => {
+    //             // console.log(response.data);
+    //             context.commit('SET_NEWS', response.data);
+    //             //response는 프로미스 객체를 반환하고있기때문에 반환한 객체를 뉴스뷰에서 then 으로 체이닝 가능함
+    //             return response;
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // },
+    // FETCH_JOBS({ commit }) {
+    //     //api폴더에 index.js 함수 호출
+    //     fetchJobsList()
+    //         .then(({ data }) => {
+    //             commit('SET_JOBS', data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // },
+    // FETCH_ASK({ commit }) {
+    //     //api폴더에 index.js 함수 호출
+    //     fetchAskList()
+    //         .then(({ data }) => {
+    //             commit('SET_ASK', data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // },
+    //하이오더로 컴포넌트 생성했기때문에 위에 코드 사용 안해도됌
     FETCH_USER({ commit }, username) {
         //api폴더에 index.js 함수 호출
         fetchUserInfo(username)
@@ -59,5 +69,10 @@ export default {
             .catch(err => {
                 console.log(err);
             })
+    },
+    FETCH_LIST({commit}, pageName){
+        fetchList(pageName)
+            .then(({data}) => commit('SET_LIST',data))
+            .catch(error => console.log(error));
     }
 }

@@ -18,5 +18,9 @@ export default {
     //액션에서 호출 하는 함수들 커밋으로 가능
     SET_ITEM(state, item) {
         state.item = item;
-    }
+    },
+    //액션에서 호출 하는 함수들 커밋으로 가능
+    SET_LIST(state, list) {
+        state.list = list;
+    },
 }
