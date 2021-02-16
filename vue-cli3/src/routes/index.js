@@ -8,6 +8,11 @@ import NewsView from '../views/NewsView.vue'
 import AskView from '../views/AskView.vue'
 import JovsView from '../views/JovsView.vue'
 */
+//믹스인
+import NewsView from '../views/NewsView.vue'
+import AskView from '../views/AskView.vue'
+import JovsView from '../views/JovsView.vue'
+
 import UserView from '../views/UserView.vue'
 import ItemView from '../views/ItemView.vue'
 import createListView from '../views/CreateListView.js'
@@ -29,19 +34,22 @@ export const router = new VueRouter({
             path: '/news',
             name: 'news',
             //component url 주소로 갔을떄 표시될 컴포넌트
-            component: createListView('NewsView'),
+            // component: createListView('NewsView'),
             //createListView('NewsView') 는 하이오더 컴포넌트 재활용
+            component:NewsView
         },
         {
             path: '/ask',
             name: 'ask',
             //하이오더 컴포넌트 createListView
-            component: createListView('AskView'),
+            // component: createListView('AskView'),
+            component:AskView
         },
         {
             path: '/jobs',
             name: 'jobs',
-            component: createListView('JovsView'),
+            // component: createListView('JovsView'),
+            component:JovsView
         },
         {
             //동적 라우팅 여기서 백단에서 쿼리를 날릴수도 있는 부분 (다이나믹 라우팅)
