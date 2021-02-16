@@ -7,15 +7,19 @@
       <!-- url 주소에 따라 화면 전환 라우터 뷰  페이지 컴포넌트 views 폴더안에 있는 vue 파일-->
       <router-view></router-view>
     </transition>
+    <spinner :loading="true"></spinner>
+
   </div>
 </template>
 
 <script>
 //스크립트에서는 파스칼 표기법 첫글자 대문자
 import ToolBar from './components/ToolBar.vue'
+import spinner from './components/Spinner.vue'
 export default {
   components:{
     ToolBar,
+    spinner,
   }
 } 
 </script>

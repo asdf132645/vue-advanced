@@ -43,20 +43,22 @@
 </template>
 <script>
 export default {
-    created(){
-        // this.$store.dispatch('FETCH_NEWS');
-        //분기처리
-        console.log(this.$route.name);
-        const name = this.$route.name;
-        if(name === 'news'){
-            this.$store.dispatch('FETCH_NEWS');
-        } else if(name === 'ask'){
-            this.$store.dispatch('FETCH_ASK');
-        }else if(name === 'jobs'){
-            this.$store.dispatch('FETCH_JOBS');
-        }
+    //믹스인 사용 안할시에 아래코드 사용 (재사용을 높이기위해서 믹스인 쓰는것을 추천함)
 
-    },
+    // created(){
+    //     // this.$store.dispatch('FETCH_NEWS');
+    //     //분기처리
+    //     console.log(this.$route.name);
+    //     const name = this.$route.name;
+    //     if(name === 'news'){
+    //         this.$store.dispatch('FETCH_NEWS');
+    //     } else if(name === 'ask'){
+    //         this.$store.dispatch('FETCH_ASK');
+    //     }else if(name === 'jobs'){
+    //         this.$store.dispatch('FETCH_JOBS');
+    //     }
+
+    // },
     computed: {
         listItems(){
             const name = this.$route.name;
