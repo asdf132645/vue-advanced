@@ -65,4 +65,35 @@ https://joshua1988.github.io/web-development/vuejs/vue-router-navigation-guards/
 ### porps 
 Vue를 사용할 때 부모 컴포넌트에 있는 data를 자식 컴포넌트에서 필요로할 때가 있습니다(또는 넘겨줘야 할 경우가 있습니다). 그럴 경우 어떻게 부모 컴포넌트의 data를 자식 컴포넌트에게 넘겨줄 수 있을까요? 그럴 땐 props옵션을 사용하면 됩니다.
 
+### 라우터 비포엔터
+beforeEnter는 인증 등을 확인할떄 쓰는 가장 흔한 방법이다.
 
+beforeEnter: (to, from, next) => {
+                console.log('to', to);
+                console.log('from', from);
+                console.log('next', next);
+            }
+to -> 이동할 url의 라우팅 정보
+
+from -> (어디서부터) 현재 url의 라우팅 정보
+
+next -> next() 를 호출해야지만 해당 페이지로 이동이 가능 없으면 이동 불가능
+
+if (to.auth ) 인증값이 있으면 이동 등 if문 걸기 가능
+
+                if(to.auth){
+                    next()
+                }else{
+                    인증값이 없으면 로그인페이지로 이동해라.
+                    router.replace('/login');
+                }
+
+### 라우터 js에서 store js를 사용할려면 index.js 를 import 해주면 됨
+
+import { store } from './stroe/index.js' 이렇게
+store.dispatch("FETCH_LIST", this.$route.name)
+
+### 라우터,스토어 는 main.js 에 연결 시켜줘야함 api는 연결 x
+
+### mounted()
+//인스턴스가 화면에 불려와젔을떄 나타났을때 라이프사이클 훅

@@ -12,6 +12,10 @@ export default {
     components:{
         ListItem,
     },
+    // mounted(){
+    //     //인스턴스가 화면에 불려와젔을떄 나타났을때 라이프사이클 훅
+    //     bus.$emit("end:spinner");
+    // }
     mixins: [ListMixin],
     // created(){
     //     /* 이벤트 보내기 이벤트 버스 */
