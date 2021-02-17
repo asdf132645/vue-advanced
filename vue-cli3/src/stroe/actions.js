@@ -1,11 +1,11 @@
 //api 폴더에 들어있는 api 함수들을 사용하는 액션js
-import { 
-    fetchNewsList, 
-    fetchJobsList, 
-    fetchAskList, 
-    fetchUserInfo, 
-    fetchCommentItem, 
-    fetchList 
+import {
+    fetchNewsList,
+    fetchJobsList,
+    fetchAskList,
+    fetchUserInfo,
+    fetchCommentItem,
+    fetchList
 } from '../api/index.js';
 
 export default {
@@ -14,7 +14,7 @@ export default {
     //액션,뮤스테이션 함수는 대문자로 지어주는게 국룰
     // FETCH_NEWS(context) {
     //     //api폴더에 index.js 함수 호출
-    //     fetchNewsList()
+    //     return fetchNewsList()
     //         .then(response => {
     //             // console.log(response.data);
     //             context.commit('SET_NEWS', response.data);
@@ -27,7 +27,7 @@ export default {
     // },
     // FETCH_JOBS({ commit }) {
     //     //api폴더에 index.js 함수 호출
-    //     fetchJobsList()
+    //     return fetchJobsList()
     //         .then(({ data }) => {
     //             commit('SET_JOBS', data);
     //         })
@@ -37,7 +37,7 @@ export default {
     // },
     // FETCH_ASK({ commit }) {
     //     //api폴더에 index.js 함수 호출
-    //     fetchAskList()
+    //     return fetchAskList()
     //         .then(({ data }) => {
     //             commit('SET_ASK', data);
     //         })
@@ -48,7 +48,7 @@ export default {
     //하이오더로 컴포넌트 생성했기때문에 위에 코드 사용 안해도됌
     FETCH_USER({ commit }, username) {
         //api폴더에 index.js 함수 호출
-        fetchUserInfo(username)
+        return fetchUserInfo(username)
             .then(({ data }) => {
                 //뮤스테이션 함수 호출 하고 인자 넘기기
                 commit('SET_USER', data);
@@ -60,7 +60,7 @@ export default {
     FETCH_ITEM({ commit }, id) {
         //아이템뷰에서 넘겨 받은 id 를 인수로 넘김
         //api폴더에 index.js 함수 호출
-        fetchCommentItem(id)
+        return fetchCommentItem(id)
             // response.data 이거를 es6 문법으로 축약 가능 아래와같이 {data}로 작성가능
             .then(({ data }) => {
                 //뮤스테이션에서만 스테이트 값을 변경이 가능하기떄문에 아래와같이 뮤스테이션 함수 호출 후 비동기로 받아온 값 을 넘기기
@@ -70,9 +70,15 @@ export default {
                 console.log(err);
             })
     },
-    FETCH_LIST({commit}, pageName){
-        fetchList(pageName)
-            .then(({data}) => commit('SET_LIST',data))
-            .catch(error => console.log(error));
+    FETCH_LIST({ commit }, pageName) {
+        return fetchList(pageName)
+            // .then(({ data }) => commit('SET_LIST', data))
+            // .catch(error => console.log(error));
+            .then(response => {
+                console.log(4);
+                commit('SET_LIST', response.data);
+                return response;
+            })
+            .catch(err => console.log(err));
     }
 }
