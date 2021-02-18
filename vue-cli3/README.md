@@ -97,3 +97,69 @@ store.dispatch("FETCH_LIST", this.$route.name)
 
 ### mounted()
 //인스턴스가 화면에 불려와젔을떄 나타났을때 라이프사이클 훅
+
+
+### 프로미스 기반 액션 함수
+
+FETCH_NEWS(context) {
+        //api폴더에 index.js 함수 호출
+        return fetchNewsList()
+            .then(response => {
+                // console.log(response.data);
+                context.commit('SET_NEWS', response.data);
+                //response는 프로미스 객체를 반환하고있기때문에 반환한 객체를 뉴스뷰에서 then 으로 체이닝 가능함
+                return response;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    },
+
+### action async 함수
+async FETCH_NEWS(context) {
+        const response = await fetchNewsList();
+        context.commit('SET_NEWS', response.data);
+        return response;
+    },
+
+### async 액션 함수
+
+async FETCH_NEWS(context) {
+        const response = await fetchNewsList();
+        context.commit('SET_NEWS', response.data);
+        return response;
+    },
+
+return 을 안해주면 비동기처리 순서가 뒤죽박죽이 됨 꼭 결과값을 반환해줘야함
+다음의 처리를 이어서 할수가있음 프로미스 체이닝을 하기위해
+프로미스를 반환이 됨
+
+
+### try catch 예외처리
+컴포넌트 단이아니라 api에서 트라이 캣치문을 넣는게 훨씬 가독성이좋음
+
+async function fetchAskList() {
+    try{
+        return axios.get(`${config.baseUrl}ask/1.json`);
+    } catch(error){
+        console.log(error);
+    }
+}
+
+### 액션함수 설명
+
+//액션에서 뮤스테이션으로 state값을 넘길수있는 구조임
+    //액션은 state 값을 변경을 못함 뮤스테이션으로 값을 넘겨야함  context.commit() 이런식으로 뮤스테이션 호출
+    //액션,뮤스테이션 함수는 대문자로 지어주는게 국룰
+
+
+### 외부 라이브러리 모듈화
+
+-이유
+
+1. vue.js 관련 라이브러리가 없을 때 일반 라이브러리를 결합할 수 있어야 함 예) 제이쿼리 라이브러리등을 결합 할 수 있어야함
+2. 종류
+ 1) 차트
+ 2) 데이트 피러
+ 3) 데이블
+ 4) 스피너
