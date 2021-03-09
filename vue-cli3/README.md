@@ -169,3 +169,8 @@ async function fetchAskList() {
  2. slot - 마크업 확장이 가능한 컴포넌트
  3. Controlled - 결합력이 높은 컴포넌트
  4. Renderless - 데이터 처리 컴포넌트
+
+
+### 서버 배포
+
+https://www.netlify.com
